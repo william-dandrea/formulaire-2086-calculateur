@@ -124,7 +124,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel className="flex flex-row gap-2">
                 Valeur totale du portefeuille au moment de la cession
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     Dès que vous faites une cession, il faut noter la valeur totale de votre portefeuille (toutes vos cryptos confondues) en euros. Si vous n&apos;avez pas cette valeur, essayez de retrouver la valeur de votre portefeuille la veille de la cession sur votre exchange.
                   </HoverCardContent>
@@ -149,7 +149,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel className="flex flex-row gap-2">
                 Montant de la cession
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     C&apos;est le montant en EUR que tu as reçu lors de la cession. (En gros, si tu as vendu pour 500EUR de BTC, tu dois mettre 500 ici)
                   </HoverCardContent>
@@ -173,7 +173,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel>
                 Frais de cession
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     C&apos;est les frais qui t&apos;ont été pris lors de cette cession.
                   </HoverCardContent>
@@ -197,7 +197,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel>
                 Soulte
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     C&apos;est si jamais tu as eu des EUR à travers des échanges cryptos/cryptos. Si tu as des soultes, essaye plutot de passer par un service comme waltio ou autre.
                   </HoverCardContent>
@@ -221,7 +221,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel>
                 Prix total d&apos;acquisition
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     C&apos;est le montant initial en euros que tu as investi. En gros, si tu as investi 1000EUR en crypto, met 1000 ici. Si jamais tu as déjà fait une cession, et que tu as pas réinvesti depuis, remet le même montant. Si tu as réinvesti depuis la dernière cession, dans ce cas la, ajoute a ces 1000EUR le montant que tu as réinvesti.
                   </HoverCardContent>
@@ -245,7 +245,7 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
               <FormLabel>
                 Soulte reçue précédente
                 <HoverCard>
-                  <HoverCardTrigger><InfoIcon className="" /></HoverCardTrigger>
+                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
                   <HoverCardContent>
                     Si tu as déjà fait une cession, et que tu as eu des soultes, met le montant ici.
                   </HoverCardContent>
