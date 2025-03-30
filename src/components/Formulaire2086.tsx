@@ -74,194 +74,183 @@ export function Formulaire2086({ formData, setFormData }: { formData: FormDataEn
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="date"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date de la cession</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Choisir une date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <h3 className="font-semibold">Date de la cession</h3>
+            <p className="text-sm text-gray-500">Sélectionnez la date la cession (le jour ou tu as vendu tes cryptos)</p>
+          </div>
+          <FormField
+            control={form.control}
+            name="date"
+            render={({ field }) => (
+              <FormItem>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full pl-3 text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, "PPP")
+                        ) : (
+                          <span>Choisir une date</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) =>
+                        date > new Date() || date < new Date("1900-01-01")
+                      }
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="space-y-2">
+            <h3 className="font-semibold">Valeur totale du portefeuille</h3>
+            <p className="text-sm text-gray-500">
+              Dès que tu fais une cession, il faut noter la valeur totale de ton portefeuille (toutes tes cryptos confondues) en euros. Si tu n&apos;as pas cette valeur, essaye de retrouver la valeur de ton portefeuille la veille de la cession sur ton exchange.
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="valeur_globale"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input 
+                    type="number" 
+                    value={field.value} 
+                    onChange={(e) => field.onChange(Number(e.target.value))}
                   />
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="valeur_globale"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="flex flex-row gap-2">
-                Valeur totale du portefeuille au moment de la cession
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    Dès que vous faites une cession, il faut noter la valeur totale de votre portefeuille (toutes vos cryptos confondues) en euros. Si vous n&apos;avez pas cette valeur, essayez de retrouver la valeur de votre portefeuille la veille de la cession sur votre exchange.
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              
-              <FormControl>
-                <Input type="number" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <div className="space-y-2">
+            <h3 className="font-semibold">Montant de la cession</h3>
+            <p className="text-sm text-gray-500">
+              C&apos;est le montant en EUR que tu as reçu lors de la cession. (En gros, si tu as vendu pour 500EUR de BTC, tu dois mettre 500 ici)
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="prix_cession"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="number" step="0.01" value={field.value} onChange={(e) => {
+                    field.onChange(Number(e.target.value))
+                  }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="prix_cession"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="flex flex-row gap-2">
-                Montant de la cession
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    C&apos;est le montant en EUR que tu as reçu lors de la cession. (En gros, si tu as vendu pour 500EUR de BTC, tu dois mettre 500 ici)
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              <FormControl>
-                <Input type="number" step="0.01" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <div className="space-y-2">
+            <h3 className="font-semibold">Frais de cession</h3>
+            <p className="text-sm text-gray-500">
+              C&apos;est les frais qui t&apos;ont été pris lors de cette cession.
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="frais_cession"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="number" step="0.01" value={field.value} onChange={(e) => {
+                    field.onChange(Number(e.target.value))
+                  }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="frais_cession"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Frais de cession
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    C&apos;est les frais qui t&apos;ont été pris lors de cette cession.
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              <FormControl>
-                <Input type="number" step="0.01" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <div className="space-y-2">
+            <h3 className="font-semibold">Soulte</h3>
+            <p className="text-sm text-gray-500">
+              C&apos;est si jamais tu as eu des EUR à travers des échanges cryptos/cryptos. Si tu as des soultes, essaye plutot de passer par un service comme waltio ou autre.
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="soulte"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="number" step="0.01" value={field.value} onChange={(e) => {
+                    field.onChange(Number(e.target.value))
+                  }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="soulte"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Soulte
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    C&apos;est si jamais tu as eu des EUR à travers des échanges cryptos/cryptos. Si tu as des soultes, essaye plutot de passer par un service comme waltio ou autre.
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              <FormControl>
-                <Input type="number" step="0.01" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <div className="space-y-2">
+            <h3 className="font-semibold">Prix total d&apos;acquisition</h3>
+            <p className="text-sm text-gray-500">
+              C&apos;est le montant initial en euros que tu as investi. En gros, si tu as investi 1000EUR en crypto, met 1000 ici. Si jamais tu as déjà fait une cession, et que tu as pas réinvesti depuis, remet le même montant. Si tu as réinvesti 200EUR depuis la dernière cession, dans ce cas la, met ici 1200 (1000 + 200).
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="prix_total_acquisition"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="number" step="0.01" value={field.value} onChange={(e) => {
+                    field.onChange(Number(e.target.value))
+                  }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="prix_total_acquisition"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Prix total d&apos;acquisition
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    C&apos;est le montant initial en euros que tu as investi. En gros, si tu as investi 1000EUR en crypto, met 1000 ici. Si jamais tu as déjà fait une cession, et que tu as pas réinvesti depuis, remet le même montant. Si tu as réinvesti depuis la dernière cession, dans ce cas la, ajoute a ces 1000EUR le montant que tu as réinvesti.
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              <FormControl>
-                <Input type="number" step="0.01" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="soulte_recue_precedente"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                Soulte reçue précédente
-                <HoverCard>
-                  <HoverCardTrigger asChild><InfoIcon className="" /></HoverCardTrigger>
-                  <HoverCardContent>
-                    Si tu as déjà fait une cession, et que tu as eu des soultes, met le montant ici.
-                  </HoverCardContent>
-                </HoverCard>
-              </FormLabel>
-              <FormControl>
-                <Input type="number" step="0.01" value={field.value} onChange={(e) => {
-                  field.onChange(Number(e.target.value))
-                }} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button type="submit">Ajouter la cession</Button>
+          <div className="space-y-2">
+            <h3 className="font-semibold">Soulte reçue précédente</h3>
+            <p className="text-sm text-gray-500">
+              Si tu as déjà fait une cession, et que tu as eu des soultes, met le montant ici.
+            </p>
+          </div>
+          <FormField
+            control={form.control}
+            name="soulte_recue_precedente"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input type="number" step="0.01" value={field.value} onChange={(e) => {
+                    field.onChange(Number(e.target.value))
+                  }} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="flex justify-end mt-6">
+          <Button type="submit">Ajouter la cession</Button>
+        </div>
       </form>
     </Form>
   )
