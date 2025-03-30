@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -23,8 +22,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { FormDataEntry } from "./TableauFormulaire2086"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { InfoIcon } from "lucide-react";
 const formSchema = z.object({
   date: z.date(),
   valeur_globale: z.number(),
