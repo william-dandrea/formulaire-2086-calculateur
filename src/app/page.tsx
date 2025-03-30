@@ -129,7 +129,7 @@ export default function Home() {
         <div className="mt-8">
           <h3 className="text-2xl font-semibold mb-4">Conclusion</h3>
           <p>
-            Ce projet est open-source, tu peux le retrouver sur <a href="https://github.com/DandreaWilliam/simulateur-plus-value-crypto" className="text-blue-500 underline">GitHub</a>.
+            Ce projet est open-source, tu peux le retrouver sur <a href="https://github.com/william-dandrea/formulaire-2086-calculateur" className="text-blue-500 underline">GitHub</a>.
           </p>
           <p>
             Si tu cherches un développeur, tu peux me contacter sur <a href="https://x.com/DandreaWilliam" className="text-blue-500 underline">Twitter</a>.
